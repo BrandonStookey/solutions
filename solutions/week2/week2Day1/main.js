@@ -1,24 +1,40 @@
-//=====> Arrays are used to store a collection of data; often of the same type. 
-	//This construct is useful because we can access data in an array through indexes. 
+//========================Warm Ups Self Challenge
 
-//================================================Warm Ups
-function sum(n) {
-  var result = 0;
-  while (n > 0) {
-    result = result + n;
-    n = n - 1;
-  }
-  return result;
+function billTotal (total){
+  var tip = .15;
+  var tax = .095; 
+
+  tip = total * tip;
+  tax = total * tax;
+  total = Math.round((tip + tax + total) * 100) / 100;
+  return "Your total comes to " + total;
 }
 
-function power_iter(base, exponent) {
-  var result = 1;
-  var count = 0;
-  while (count < exponent) {
-    result = result * base;
-    count = count + 1;
+console.log('billTotal: ', billTotal(25))
+
+function animals (animal, emotion){
+  if (animal ==='cat' && emotion === 'happy'){
+    return 'The cat dances with joy!';
+  } else if (animal ==='cat' && emotion === 'sad'){
+    return 'The cat mopes around';
+  } else if (animal ==='cat' && emotion === 'angry') {
+    return 'The cat shreds your favorite pair of shoes!';
   }
-  return result;
+
+  if(animal ==='dog' && emotion === 'happy'){
+    return 'The dog licks your face!';
+  } else if (animal ==='dog' && emotion === 'sad'){
+    return 'The dog gives you sad puppy eyes';
+  } else if(animal ==='dog' && emotion === 'angry'){
+    return 'The dog barks really loud!';
+  }
+}
+
+function digitalSum(num){
+  if(num === 0){
+    return num;
+  }
+  return (num % 10) + digitalSum(Math.floor(num / 10))
 }
 
 
@@ -41,26 +57,50 @@ function rest(arr){
 	return arr.slice(1, arr.length);
 }
 
-function last(arr){
+function butLast(arr){
 	return arr.slice(0, arr.length - 1);
 }
 
+//cons will always insert x in the beginning of the array
 function cons(array, x) {
   array.unshift(x);
   return array;
 }
 
+//conj will always push x to the end of the array
 function conj(array, x){
-	array.push(x);
-	return array;
+  array.push(x);
+  return array;
 }
 
 function mystery(array) {
   if (array.length === 0) {
     return [];
   }
-  return conj(mystery(rest(array)), first(array));
+  return conj([], first(array));
 }
+
+console.log('mystery: ', mystery([1,2,3,4,5]));
+
+//mystery(rest(array)) is shortening our array by one index from the front  of the array on each iteration
+  //Call stack
+  //[5] <==== Last in first out
+  //[4,5]
+  //[3,4,5]
+  //[2,3,4,5]
+  //[1,2,3,4,5] <===== First in last out
+//mystery() is doing the recurisve call
+//once the length of array is less than 0 it will exit the recursive call and return an empty array 
+  // so now we have conj([], first(array));
+  //it will then look at our call stack
+  //conj([], first(array)) will be invoked on each number in our call stack
+  //effectively pushing each new number in the array
+  //sinc we start with 5 it gets pushed in
+  //then 4 gets pushed after and so forth
+  //until we end up with [5,4,3,2,1]
+
+
+
 
 function mysteryAdd(array) {
 	var total = 0;
@@ -70,12 +110,16 @@ function mysteryAdd(array) {
   return first(array) + mysteryAdd(rest(array));
 }
 
+console.log('mysteryAdd: ', mysteryAdd([1,2,3,4]));
+
 function mysterySquared(array) {
   if (array.length === 0) {
     return [];
   }
   return cons(mysterySquared(rest(array)), first(array) * first(array));
 }
+
+console.log('mysterySquared: ', mysterySquared([2, 3, 4]))
 
 function mysteryEven(array) {
   if (array.length === 0) {
@@ -86,3 +130,6 @@ function mysteryEven(array) {
 	}
 	return mysteryEven(rest(array));
 }
+
+console.log('mysteryEven: ', mysteryEven([1,2,3,4]));
+

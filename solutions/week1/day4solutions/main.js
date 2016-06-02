@@ -195,22 +195,15 @@ function findCharacterCount (str, character){
 
 //=================================================================create indexOf
 
-function indexOf(str, character){
-	var foundIndex;
-
-	function findIndex(sliceCount1, sliceCount2, currentIndex){
-		if(str.slice(sliceCount1, sliceCount2) === character){
-			foundIndex = currentIndex;
-			return foundIndex;
+function indexOf(str, char, index) {
+	
+	if (str.slice(0,1) === char) {
+		return index;
+	} else if (str.slice(0,1) === "") {
+		return "Not here" ;
+	} else {
+			return  indexOf(str.slice(1), char, index +1);
 		}
-
-		if(str.slice(sliceCount1, sliceCount2) === ''){
-			return 'Error, not found!';	
-		}
-		findIndex(sliceCount1 + 1, sliceCount2 + 1, currentIndex + 1);
-	}
-	findIndex(0,1,0);
-	return foundIndex;
 }
 
 //=======================================================improved power function

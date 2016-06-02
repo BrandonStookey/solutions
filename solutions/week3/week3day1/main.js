@@ -290,9 +290,12 @@ var people = [
   {name: "Lem E. Tweakit", age: 40}
 ];
 
-console.log(map(people, function(obj){ return obj.name; }));
+console.log(map(people, function(obj){ 
+  return obj.name; 
+}));
 
-console.log(map(people, function(obj){ return obj.name + ' is ' + obj.age; }));
+console.log(map(people, function(obj){ 
+  return obj.name + ' is ' + obj.age; }));
 
 //===========================================================Finding Patterns: Filtering
 

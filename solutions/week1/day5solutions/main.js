@@ -1,11 +1,12 @@
 //=====================Warm ups
 function isPalindrome(str) {
   if(str.length <= 1) {
+    console.log(str);
     return true;
   }
   console.log(str);
   if(str[0] === str[str.length-1]) {
-    return isPalindrome(str.substr(1, str.length-2));
+    return isPalindrome(str.slice(1, str.length - 1));
   }
   return false;
 }
@@ -13,6 +14,7 @@ function isPalindrome(str) {
 console.log(isPalindrome('racecar'));
 
 function reverseString(str) {
+  console.log('str', str);
   if(!str.length) {
     return '';
   }
@@ -115,6 +117,7 @@ function guessMyNumber(n) {
     return "It took you " + temp + " tries to guess my number! The current highscore is a total of " + highScore + " guess(es)";
   }
   else {
+    console.log('numberToGuess: ', numberToGuess);
     return "Guess Again!";
   }
 }
@@ -124,11 +127,11 @@ function randInt(n) {
 }
 
 
-// console.log('1: ',guessMyNumber(6));
-// console.log('2: ',guessMyNumber(4));
-// console.log('3: ',guessMyNumber(3));
-// console.log('4: ',guessMyNumber(2));
-// console.log('5: ',guessMyNumber(1));
+console.log('1: ',guessMyNumber(6));
+console.log('2: ',guessMyNumber(4));
+console.log('3: ',guessMyNumber(3));
+console.log('4: ',guessMyNumber(2));
+console.log('5: ',guessMyNumber(1));
 
 
 //===============================================computerGuessMyNumber
@@ -198,6 +201,8 @@ function repeatString(str, count){
     count = count - 1;
   }
   return result;
-};
+}
+
+
 
 

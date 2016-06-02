@@ -12,6 +12,32 @@ function squareNumbers(array){
 	return result;
 }
 
+function addArrays(arr1, arr2){
+	var length = 0;
+	var result = [];
+
+	if(arr1.length < arr2.length){
+		length = arr2.length;
+	} else{
+		length = arr1.length;
+	}
+
+	for(var i = 0; i < length; i++){
+		console.log(arr1[i])
+		if(arr1[i] !== undefined && arr2[i] !== undefined){
+			result.push(arr1[i] + arr2[i])
+		} else if(arr1[i] === undefined){
+			result.push(arr2[i]);
+		} else if(arr2 === undefined){
+			result.push(arr1[i])
+		}
+	}
+	return result;
+}
+
+console.log('addArrays: ', addArrays([1,2,3], [4,3,2,1])); // => [5,5,5,1]
+
+
 //=========================================Exercises 
 
 var aboutMe = {
@@ -26,6 +52,7 @@ var aboutMe = {
 	DoB: 'Jan 16, 1986',
 	Pets: 'Dog'
 }
+console.log('aboutMe: ', aboutMe.name.first)
 
 var objMe = {
 	first: 'Brandon',
@@ -50,10 +77,6 @@ person['age']; // => 26
 person[key]; // => 'Alyssa P. Hacker'
 person['hometown'] // => 'somewhere'
 
-function formatName(obj){
-	return obj.first + " " + obj.middle + " " + obj.last;
-}
-
 var people = [
 	{name: {first: "Brandon", middle: "William", last: "Stookey"}, age: 30},
   {name: {first: "Alyssa", middle: "P.", last: "Hacker"}, age: 26},
@@ -63,13 +86,20 @@ var people = [
   {name: {first: "Louis", last: "Reasoner"}, age: 21}
 ];
 
-function arrayOfNames(array, func){
+function formatName(obj){
+	return obj.name.first + " " + obj.name.middle + " " + obj.name.last;
+}
+
+
+function arrayOfNames(array){
 	var result = [];
 	for(var i = 0; i < array.length; i++){
-		result.push(func(array[i].name));
+		result.push(formatName(array[i]));
 	}
 	return result; 
 }
+
+console.log('arrayOfNames: ', arrayOfNames(people));
 
 function averageAge(array){
 	var result = 0;
@@ -101,12 +131,13 @@ var dirtyObject = {
 }
 
 function clean(obj) {
+	var newObj = {};
   for(var key in obj){
-  	if(key[0] === '_'){
-  		delete obj[key];
+  	if('n' !== '_'){
+  		newObj['name'] = obj['name'];
   	}
   }
-  return obj;
+  return newObj;
 }
 
 var objNumbers = {
@@ -121,14 +152,13 @@ var objNumbers = {
 
 
 function removeOddValues(obj) {
-  for(var key in obj){
-  	if(typeof obj[key] === "number"){
-  		if(obj[key] % 2 !== 0){
-	  		delete obj[key];
-  		}
-  	}
-  }
-  return obj;
+	var newObj = {};
+	for(var key in obj){
+		if(obj[key] % 2 === 0){
+			newObj[key] = obj[key];
+		}
+	}
+	return newObj;
 }
 
 function countWords(str){

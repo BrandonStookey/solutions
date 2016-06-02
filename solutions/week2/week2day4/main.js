@@ -24,6 +24,8 @@ function squareNumericValues(obj){
 	return obj;
 }
 
+console.log('squareNumericValues: ', squareNumericValues({name: "Phuong", age: 25}));
+
 //==============================================exercise
 var counter = 0;
 
@@ -80,6 +82,16 @@ function searchBook(arrayOfBooks, bookTitle){
 		}
 	}
 	return false;
+}
+
+function isMatch (query, match){
+    for(var i = 0; i<query.length; i++){
+	    var lower = query[i].title.toLowerCase();
+	    if(lower.indexOf(match.toLowerCase()) !== -1) {
+	        console.log(lower.indexOf(match.toLowerCase()));    
+	    return query[i];    
+    }        
+	}
 }
 
 function removeBook(arrayOfBooks, bookTitle){

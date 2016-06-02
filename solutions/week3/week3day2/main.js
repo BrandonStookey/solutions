@@ -59,13 +59,11 @@ console.log(fullNames(people1))
 
 function averageAge(peopleArray) {
   var acc = 0;
-  var count = 1;
   var ageArray = ages(peopleArray);
   each(ageArray, function(age){
   	acc += age;
-  	count++;
   });
-  acc = acc / count;
+  acc = acc / ageArray.length;
   return acc;
 }
 
